@@ -2,16 +2,18 @@
   import EventCard from '@/components/EventCard.vue'
   import CategoryCard from '@/components/CategoryCard.vue'
   import Event from '@/type/Event'
+  import StudentCard from '@/components/StudentCard.vue'
   import { ref, onMounted } from 'vue'
   import EventService from '@/services/EventService'
+  import StudentService from '@/services/StudentService'
 
-  const events = ref<Event[]>(null)
+  const students = ref<Student[]>(null)
 
   onMounted(() =>{
-    EventService.getEvent()
+    StudentService.getEvent()
     .then((response) =>{
       // console.log(response.data)
-      events.value = response.data
+      students.value = response.data
     })
     .catch((error) =>{
       console.error('There was an error!', error)
@@ -20,16 +22,15 @@
 </script>
 
 <template>
-  <h1>Events For Good</h1>
+  <h1>Students List</h1>
   <!-- new element -->
-  <div class="events">
-    <EventCard v-for="event in events" :key="event.id" :event="event" />
-    <CategoryCard v-for="eventi in events" :key="eventi.id" :event="eventi" />
+  <div class="students">
+    <StudentCard v-for="student in students" :key="student.id" :student="student" />
   </div>
 </template>
 
 <style scoped>
-.events {
+.students {
   display: flex;
   flex-direction: column;
   align-items: center;
