@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import {ref} from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
+
+const pageSize = ref(2);
 </script>
 
 <template>
@@ -7,7 +10,8 @@ import { RouterLink, RouterView } from 'vue-router'
     <header>
       <div class="wrapper">
         <nav>
-          <EventCard>Event</EventCard> | 
+          <!-- <EventCard>Event</EventCard> |  -->
+          <RouterLink :to="{ name: 'event-list-view', query:{pageSize:pageSize}}">Event</RouterLink> |
           <RouterLink :to="{name:'about'}">About</RouterLink> |
           <RouterLink :to="{name:'student'}">Student</RouterLink>
         </nav>

@@ -2,10 +2,10 @@
   import { ref, onMounted, defineProps } from 'vue'
   import EventCard from '@/components/EventCard.vue'
   import CategoryCard from '@/components/CategoryCard.vue'
-  import Event from '@/type/Event'
+  import {type Event} from '@/types'
   import EventService from '@/services/EventService'
 
-  const event = ref<Event[]>(null)
+  const event = ref<Event | null>(null)
   const props = defineProps({
     id: {
         type: String,
@@ -14,7 +14,7 @@
   })
 
   onMounted(() =>{
-    EventService.getEvent (props.id)
+    EventService.getEvent (parseInt(props.id))
         .then ((response) => {
             event.value = response.data
         })
