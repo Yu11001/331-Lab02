@@ -8,7 +8,6 @@ const props=defineProps<{
 }>()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const {event}=toRefs(props);
-
 const router=useRouter()
 const register=()=>{
     //if the registration API call successful
@@ -21,4 +20,5 @@ const register=()=>{
 <template>
     <p>Register event here</p>
     <button @click="register">Register</button>
+
 </template>
