@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import {toRefs,defineProps} from 'vue'
-import {type Event} from '@/types'
+import {type Passenger} from '@/types'
 
 const props=defineProps<{
-    event:Event,
+    passenger : Passenger,
     id:String
 }>()
 
-const {event}= toRefs(props);
+const { passenger }= toRefs(props);
 </script>
 
 
 <template>
     
-        <p>{{ event.time }} on {{ event.date }} @{{ event.location }}</p>
-        <p>{{ event.description }}</p>
+        <h3>{{ passenger.name }}</h3>
+        <p>{{ passenger.trips }}</p>
     
 
 </template>

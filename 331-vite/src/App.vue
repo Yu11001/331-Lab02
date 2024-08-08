@@ -1,19 +1,25 @@
 <script setup lang="ts">
 import {ref} from 'vue'
+import { useMessageStore } from './stores/message'
 import { RouterLink, RouterView } from 'vue-router'
+import { storeToRefs } from 'pinia'
 
 const pageSize = ref(2);
+const store = useMessageStore()
+const { message } = storeToRefs(store)
 </script>
 
 <template>
   <div id="layout">
+    
     <header>
+      <div id="flashMessage" v-if="message">
+        <h4>{{ message }}</h4>
+      </div>
       <div class="wrapper">
         <nav>
           <!-- <EventCard>Event</EventCard> |  -->
-          <RouterLink :to="{ name: 'event-list-view', query:{pageSize:pageSize}}">Event</RouterLink> |
-          <RouterLink :to="{name:'about'}">About</RouterLink> |
-          <RouterLink :to="{name:'student'}">Student</RouterLink>
+          <RouterLink :to="{ name: 'home', query: { pageSize: pageSize } }">Passengers</RouterLink>
         </nav>
       </div>
     </header>
@@ -41,7 +47,7 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #248f8e;
 }
 
 h2 {

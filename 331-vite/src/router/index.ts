@@ -1,51 +1,54 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import EventListView from '@/views/EventListView.vue'
+import PassengerListView from '@/views/PassengerListView.vue'
 import AboutView from '@/views/AboutView.vue'
-import EventEditView from '@/views/event/EditView.vue'
-import EventLayoutView from '@/views/event/LayoutView.vue'
-import EventDetailView from '@/views/event/DetailView.vue'
-import EventRegisterView from '@/views/event/RegisterView.vue'
-import StudentView from '@/views/StudentListView.vue'
+import PassengerEditView from '@/views/event/EditView.vue'
+import PassengerLayoutView from '@/views/event/LayoutView.vue'
+import PassengerDetailView from '@/views/event/DetailView.vue'
+import PassengerRegisterView from '@/views/event/RegisterView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
-import NetworkErrorView from '@/views/NetworkErrorView.vue'
+import AirlineDetailView from '@/views/event/AirlineDetailView.vue'
+import nProgress from 'nprogress'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'event-list-view',
-      component: EventListView,
+      name: 'home',
+      component: PassengerListView,
       props: (route) => ({
         page: parseInt(route.query.page?.toString() || '1'),
-        pageSize: Number(route.query.pageSize)
+        pageSize: parseInt(route.query.pageSize?.toString() || '10')
       })
     },
     {
-      path: '/event/:id',
-      name: 'event-layout-view',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: EventLayoutView,
+      path: '/passenger/:id',
+      name: 'passenger-layout-view',
+      component: PassengerLayoutView,
       props: true,
       children: [
         {
           path: '',
-          name: 'event-detail-view',
-          component: EventDetailView,
+          name: 'passenger-detail-view',
+          component: PassengerDetailView,
           props: true
         },
         {
-          path: 'register',
-          name: 'event-register-view',
-          component: EventRegisterView,
+          path: '',
+          name: 'passenger-register-view',
+          component: PassengerRegisterView,
           props: true
         },
         {
-          path: 'edit',
-          name: 'event-edit-view',
-          component: EventEditView,
+          path: '',
+          name: 'passenger-edit-view',
+          component: PassengerEditView,
+          props: true
+        },
+        {
+          path: 'airline',
+          name: 'airline-detail-view',
+          component: AirlineDetailView,
           props: true
         }
       ]
@@ -53,16 +56,7 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: AboutView
-    },
-
-    {
-      path: '/students',
-      name: 'student',
-      component: StudentView
     },
     {
       path: '/404/:resource',
@@ -75,13 +69,23 @@ const router = createRouter({
       path: '/:catchAll(.*)',
       name: 'not-found',
       component: NotFoundView
-    },
-    {
-      path: '/network-error',
-      name: 'network-error-view',
-      component: NetworkErrorView
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
+  }
+})
+
+router.beforeEach(() => {
+  nProgress.start()
+})
+
+router.afterEach(() => {
+  nProgress.done()
 })
 
 export default router

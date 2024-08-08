@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { type Event } from '@/types'
-import EventService from '@/services/EventService'
+import { type Passenger } from '@/types'
+import PassengerService from '@/services/PassengerService'
 import { useRouter } from 'vue-router'
-const event = ref<Event | null>(null)
+
+const passenger = ref<Passenger | null>(null)
 const props = defineProps({
   id: {
     type: String,
@@ -11,37 +12,31 @@ const props = defineProps({
   }
 })
 const router = useRouter()
+
 onMounted(() => {
-  EventService.getEvent(parseInt(props.id))
+  PassengerService.getPassenger(props.id)
     .then((response) => {
-      event.value = response.data
+      passenger.value = response.data
     })
     .catch((error) => {
-      if (error.response && error.response.status === 404) {
-        router.push({
-          name: '404-resource-view',
-          params: { resource: 'event' }
-        })
-      } else {
-        router.push({ name: 'network-error-view' })
-      }
+      console.error('API Error:', error)
+      router.push({
+        name: '404-resource-view',
+        params: { resource: 'passenger' }
+      })
     })
 })
 </script>
-
 <template>
-  <div v-if="event">
-    <h1>{{ event.title }}</h1>
-
+  <div v-if="passenger">
     <nav>
-      <RouterLink :to="{ name: 'event-detail-view' }">Details</RouterLink>
+      <RouterLink :to="{ name: 'home' }">Home</RouterLink> |
+      <RouterLink :to="{ name: 'passenger-detail-view' }">Passenger Details</RouterLink>
       |
-      <RouterLink :to="{ name: 'event-register-view' }">Register</RouterLink>
+      <RouterLink :to="{ name: 'passenger-edit-view' }">Edit</RouterLink>
       |
-      <RouterLink :to="{ name: 'event-edit-view' }">Edit</RouterLink>
-      |
+      <RouterLink :to="{ name: 'airline-detail-view' }">Airline Details</RouterLink>
     </nav>
-
-    <RouterView :event="event"></RouterView>
+    <RouterView :passenger="passenger" />
   </div>
 </template>
