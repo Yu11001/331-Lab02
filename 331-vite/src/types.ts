@@ -20,3 +20,7 @@ export interface airline{
 export interface MessageState{
     message: string
 }
+
+export interface PassengerState{
+    passenger: Passenger | null
+}

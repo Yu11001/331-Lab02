@@ -11,14 +11,13 @@ const props=defineProps<{
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const {passenger}=toRefs(props)
 const store = useMessageStore()
-const edit = () => {
-  store.updateMessage('update is in progress')
-
-  setTimeout(() => {
-    store.resetMessage()
-  }, 5000)
-
-  router.push({ name: 'home' })
+const edit=()=>{
+    router.push({name:'passenger-detail-view'})
+    store.updateMessage('You are successufully updated data for ' + props.passenger.name)
+    setTimeout(() => {
+        store.resetMessage()
+    }, 5000)
+    router.push({ name: 'home', params: { id: props.passenger._id}})
 }
 </script>
 

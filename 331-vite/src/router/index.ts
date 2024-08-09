@@ -8,6 +8,8 @@ import PassengerRegisterView from '@/views/event/RegisterView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 import AirlineDetailView from '@/views/event/AirlineDetailView.vue'
 import nProgress from 'nprogress'
+import PassengerService from '@/services/PassengerService'
+import { usePassengerStore } from '@/stores/passenger'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,7 +21,7 @@ const router = createRouter({
       props: (route) => ({
         page: parseInt(route.query.page?.toString() || '1'),
         pageSize: parseInt(route.query.pageSize?.toString() || '10')
-      })
+      }),
     },
     {
       path: '/passenger/:id',

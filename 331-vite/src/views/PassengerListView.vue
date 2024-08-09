@@ -26,6 +26,7 @@ const pageSize = computed(() => props.pageSize)
 
 onMounted(() => {
   watchEffect(() => {
+    passengers.value = null
     PassengerService.getPassengers(pageSize.value, page.value)
       .then((response) => {
         const startIndex = (page.value - 1) * pageSize.value

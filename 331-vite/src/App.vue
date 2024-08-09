@@ -4,7 +4,7 @@ import { useMessageStore } from './stores/message'
 import { RouterLink, RouterView } from 'vue-router'
 import { storeToRefs } from 'pinia'
 
-const pageSize = ref(2);
+const pageSize = ref(10);
 const store = useMessageStore()
 const { message } = storeToRefs(store)
 </script>
@@ -52,5 +52,18 @@ nav a.router-link-exact-active {
 
 h2 {
   font-size: 20px;
+}
+
+@keyframes yellofade {
+  from{
+    background-color: yellow;
+  }
+  to{
+    background-color: transparent;
+  }
+}
+
+#flashMessage {
+  animation: yellofade 3s ease-in-out;
 }
 </style>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {toRefs,defineProps} from 'vue'
-import {type Passenger} from '@/types'
+import { type Passenger }from '@/types'
 
 const props=defineProps<{
     passenger : Passenger,
