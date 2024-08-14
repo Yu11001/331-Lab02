@@ -15,7 +15,7 @@ const pageSize = ref(2);
       <div id="flashMessage" class="animate-fade" v-if="message">
         <h4>{{ message }}</h4>
       </div>
-      <h1>Deploy with Vercel</h1>
+      <h1>Deploy with Vercel ^^</h1>
       <div class="wrapper">
         <nav class="p-[30px]">
           <!-- <EventCard>Event</EventCard> |  -->
