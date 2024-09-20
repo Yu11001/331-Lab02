@@ -4,13 +4,18 @@ import AboutView from '@/views/AboutView.vue'
 import EventEditView from '@/views/event/EditView.vue'
 import EventLayoutView from '@/views/event/LayoutView.vue'
 import EventDetailView from '@/views/event/DetailView.vue'
+import OrganizerDetailView from '@/views/OrganizerDetailView.vue'
 import EventRegisterView from '@/views/event/RegisterView.vue'
 import StudentView from '@/views/StudentListView.vue'
+import OrganizerListView from '@/views/OrganizerListView.vue'
 import EventService from '@/services/EventService'
 import NotFoundView from '@/views/NotFoundView.vue'
 import NetworkErrorView from '@/views/NetworkErrorView.vue'
 import nProgress from 'nprogress'
 import { useEventStore } from '@/stores/event'
+import AddEventView from '@/views/event/EventFromView.vue'
+import AddOrganizerView from '@/views/OrganizerFromView.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -59,6 +64,12 @@ const router = createRouter({
           props: true
         },
         {
+          path: '',
+          name: 'organizer-detail-view',
+          component: OrganizerDetailView,
+          props: true
+        },
+        {
           path: 'register',
           name: 'event-register-view',
           component: EventRegisterView,
@@ -79,6 +90,21 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: AboutView
+    },
+    {
+      path: '/add-event',
+      name: 'add-event',
+      component: AddEventView
+    },
+    {
+      path: '/organizer-list-view',
+      name: 'organizer-list-view',
+      component: OrganizerListView
+    },
+    {
+      path: '/add-organizer',
+      name: 'add-organizer',
+      component: AddOrganizerView
     },
 
     {

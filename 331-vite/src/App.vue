@@ -21,9 +21,50 @@ const pageSize = ref(2);
       <div class="wrapper">
         <nav class="p-[30px]">
           <!-- <EventCard>Event</EventCard> |  -->
-          <RouterLink class="font-bold text-gray-700" exact-active-class="text-[#42b983]" :to="{ name: 'event-list-view', query:{pageSize:pageSize}}">Event</RouterLink> |
+          <!-- <RouterLink class="font-bold text-gray-700" exact-active-class="text-[#42b983]" :to="{ name: 'event-list-view', query:{pageSize:pageSize}}">Event</RouterLink> |
           <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{name:'about'}">About</RouterLink> |
-          <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{name:'student'}">Student</RouterLink>
+          <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{name:'student'}">Student</RouterLink> -->
+          <RouterLink
+            class="font-bold text-gray-700"
+            exact-active-class="text-green-500"
+            :to="{ name: 'event-list-view', query: { pageSize: pageSize } }"
+            >Event</RouterLink
+          >
+          <!-- |
+          <RouterLink
+            class="font-bold text-gray-700"
+            exact-active-class="text-green-500"
+            :to="{ name: 'organizer-list-view', query: { pageSize: pageSize } }"
+            >Organizer</RouterLink
+          > -->
+          |
+          <RouterLink
+            class="font-bold text-gray-700"
+            exact-active-class="text-green-500"
+            :to="{ name: 'about' }"
+            >About</RouterLink
+          >
+          |
+          <RouterLink
+            class="font-bold text-gray-700"
+            exact-active-class="text-green-500"
+            :to="{ name: 'add-event' }"
+            >New Event</RouterLink
+          >
+          |
+          <RouterLink
+            class="font-bold text-gray-700"
+            exact-active-class="text-green-500"
+            :to="{ name: 'add-organizer' }"
+            >New Organizer</RouterLink
+          >
+          |
+          <RouterLink
+            class="font-bold text-gray-700"
+            exact-active-class="text-green-500"
+            :to="{ name: 'student' }"
+            >Students</RouterLink
+          >
         </nav>
       </div>
     </header>
