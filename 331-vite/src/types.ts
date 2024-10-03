@@ -7,7 +7,7 @@ export interface Event{
     date: string
     time: string
     petsAllowed: boolean
-    organizer: string
+    organizer: Organizer
 }
 
 export interface Student{
@@ -31,12 +31,5 @@ export interface EventState{
 
 export interface Organizer{
     id: number,
-    category: string,
-    title: string,
-    description: string,
-    location: string,
-    date: string,
-    time: string,
-    petAllowed: boolean,
-    organizer: string
+    name: string
 }
